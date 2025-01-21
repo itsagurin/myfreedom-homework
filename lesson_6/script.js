@@ -74,7 +74,7 @@ const elem2 = createTag('p', 'green', 'Paragraph');
 console.log(elem1);
 console.log(elem2);
 
-// task 5
+// task 6
 // Вставить в страницу (в html документ) тег <select>. С помощью js (в цикле)
 // добавить в этот select опции (option) под годы от 1960 по 2020.
 
@@ -86,7 +86,7 @@ for (let i = 1960; i <= 2020; i++) {
     select.appendChild(option);
 }
 
-// task 6
+// task 7
 // Вставить в страницу (в html документ) ul.
 // Предусмотреть в коде следующий массив:
 //
@@ -123,7 +123,7 @@ clients.forEach(client => {
     ul.appendChild(li); // Добавляем li в ul
 });
 
-// task 7
+// task 8
 // Есть массив ссылок:
 //
 // let linksArr = ['https://www.amazon.com/', 'https://www.youtube.com/', 'https://devby.io/', 'https://www.google.com/', 'https://apple.com/'];
@@ -165,7 +165,7 @@ linksArr.forEach(link => {
 
 document.body.appendChild(div);
 
-// task 8
+// task 9
 // Есть массив объектов с полями name, age. Например:
 //
 // const users = [

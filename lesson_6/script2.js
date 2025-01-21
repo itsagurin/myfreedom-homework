@@ -7,7 +7,7 @@ ul.classList.add('list');
 // 2) На li через один (начиная с первого) установить класс "item"
 const liItems = ul.querySelectorAll('li');
 liItems.forEach((li, index) => {
-    if (index % 2 === 0) { // Проверяем, является ли индекс четным
+    if (index % 2 === 0) {
         li.classList.add('item');
     }
 });

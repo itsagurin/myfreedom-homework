@@ -1,95 +1,102 @@
 body {
+  background: #f4f4f9;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  margin-top: 50px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.header {
+  padding: 20px;
   background: #04A1BF;
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
-}
-
-.intro {
-  margin: 30px 0;
-  font-weight: bold;
-}
-
-h1 {
   color: #ffffff;
-  text-transform: uppercase;
-  font-weight: 800;
+  text-align: center;
 }
 
-p {
-  font-weight: 600;
+.header h1 {
+  margin: 0;
 }
 
-#first {
-  margin-top: 10px;
-  color: #FFCD5D;
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
 }
 
-#second {
-  color: #51DF70;
-}
-
-#third {
-  color: #025F70;
-  margin-bottom: 30px;
-}
-
-#enter {
-  border: none;
-  padding: 5px 15px;
+input, textarea, select, button {
+  padding: 10px;
+  font-size: 16px;
   border-radius: 5px;
-  color: #04A1BF;
-  background-color: #025F70;
-  font-weight: normal;
-  transition: all 0.75s ease;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: #04A1BF;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
 
   &:hover {
-    background-color: #02798F;
-    color: #FFCD5D;
+    background: #025F70;
   }
 }
 
-ul {
-  text-align: left;
-  margin-top: 20px;
-
-  li {
-    list-style: none;
-    padding: 10px 20px;
-    color: #ffffff;
-    text-transform: capitalize;
-    font-weight: 600;
-    border: 2px solid #025F70;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    background: #4EB9CD;
-    transition: all 0.5s ease;
-
-    &:hover {
-      background: #76CFE0;
-    }
-
-    button {
-      background: none;
-      border: none;
-      float: right;
-      color: #025F70;
-      font-weight: 800;
-    }
-  }
+.content {
+  padding: 20px;
 }
 
-input {
+#taskList {
+  list-style: none;
+  padding: 0;
+}
+
+.task {
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 15px;
   border-radius: 5px;
-  min-width: 65%;
-  padding: 5px;
+  background: #f9f9f9;
+}
+
+.task h2 {
+  margin: 0 0 5px;
+  font-size: 18px;
+}
+
+.task p {
+  margin: 5px 0;
+}
+
+.task .status {
+  font-size: 14px;
+  color: #666;
+}
+
+.task button {
+  background: #e74c3c;
+  color: #fff;
   border: none;
-}
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 3px;
+  float: right;
 
-.done {
-  background: #51DF70 !important;
-  color: #00891E;
-}
-
-.delete {
-  display: none;
+  &:hover {
+    background: #c0392b;
+  }
 }

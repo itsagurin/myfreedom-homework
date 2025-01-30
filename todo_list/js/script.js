@@ -3,18 +3,41 @@ const taskDescriptionInput = document.getElementById("taskDescription");
 const taskStatusInput = document.getElementById("taskStatus");
 const addTaskButton = document.getElementById("addTask");
 const taskList = document.getElementById("taskList");
-
-// Массив для хранения задач
+const searchInput = document.getElementById("searchInput");
+const statusFilter = document.getElementById("statusFilter");
 const tasks = [];
 
-// Функция для отображения задач
+function filterTasks() {
+    const searchText = searchInput.value.toLowerCase();
+    const selectedStatus = statusFilter.value;
+
+    return tasks.filter(task => {
+        const matchesSearch = task.title.toLowerCase().includes(searchText);
+        const matchesStatus = selectedStatus === 'all' || task.status === selectedStatus;
+        return matchesSearch && matchesStatus;
+    });
+}
+
 function renderTasks() {
-    taskList.innerHTML = ""; // Очищаем список
-    tasks.forEach((task, index) => {
+    const filteredTasks = filterTasks();
+    taskList.innerHTML = "";
+
+    filteredTasks.forEach((task, index) => {
         const taskElement = document.createElement("li");
         taskElement.className = "task";
+
+        const titleHTML = task.isEditing
+            ? `<div class="edit-title">
+                <input type="text" value="${task.title}" id="edit-${index}">
+                <div class="edit-buttons">
+                    <button onclick="saveTaskTitle(${index})">✓</button>
+                    <button onclick="cancelEditing(${index})">✗</button>
+                </div>
+               </div>`
+            : `<h2 class="task-title" onclick="startEditing(${index})">${task.title}</h2>`;
+
         taskElement.innerHTML = `
-            <h2>${task.title}</h2>
+            ${titleHTML}
             <p>${task.description}</p>
             <p class="date">Created: ${task.date}</p>
             <label for="status-${index}">Status:</label>
@@ -26,10 +49,40 @@ function renderTasks() {
             <button onclick="deleteTask(${index})">Delete</button>
         `;
         taskList.appendChild(taskElement);
+
+        if (task.isEditing) {
+            const editInput = document.getElementById(`edit-${index}`);
+            editInput.focus();
+            editInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    saveTaskTitle(index);
+                }
+            });
+        }
     });
 }
 
-// Функция для добавления задачи
+function startEditing(index) {
+    tasks[index].isEditing = true;
+    renderTasks();
+}
+
+function saveTaskTitle(index) {
+    const editInput = document.getElementById(`edit-${index}`);
+    const newTitle = editInput.value.trim();
+
+    if (newTitle) {
+        tasks[index].title = newTitle;
+        tasks[index].isEditing = false;
+        renderTasks();
+    }
+}
+
+function cancelEditing(index) {
+    tasks[index].isEditing = false;
+    renderTasks();
+}
+
 function addTask() {
     const title = taskTitleInput.value.trim();
     const description = taskDescriptionInput.value.trim();
@@ -41,7 +94,13 @@ function addTask() {
         return;
     }
 
-    const task = { title, description, status, date };
+    const task = {
+        title,
+        description,
+        status,
+        date,
+        isEditing: false
+    };
     tasks.push(task);
     renderTasks();
 
@@ -50,16 +109,16 @@ function addTask() {
     taskStatusInput.value = "open";
 }
 
-// Функция для удаления задачи
 function deleteTask(index) {
     tasks.splice(index, 1);
     renderTasks();
 }
 
-// Функция для обновления статуса задачи
 function updateTaskStatus(index, newStatus) {
     tasks[index].status = newStatus;
     renderTasks();
 }
 
 addTaskButton.addEventListener("click", addTask);
+searchInput.addEventListener("input", renderTasks);
+statusFilter.addEventListener("change", renderTasks);

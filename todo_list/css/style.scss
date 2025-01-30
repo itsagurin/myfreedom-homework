@@ -100,3 +100,46 @@ button {
     background: #c0392b;
   }
 }
+
+.search-filter {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 15px;
+
+  #searchInput {
+    flex: 1;
+  }
+}
+
+.task {
+  .task-title {
+    cursor: pointer;
+    margin: 0 0 5px;
+    font-size: 18px;
+
+    &:hover {
+      color: #04A1BF;
+    }
+  }
+
+  .edit-title {
+    margin-bottom: 10px;
+
+    input {
+      width: 100%;
+      font-size: 18px;
+      padding: 5px;
+      margin-bottom: 5px;
+    }
+
+    .edit-buttons {
+      display: flex;
+      gap: 5px;
+
+      button {
+        padding: 5px 10px;
+      }
+    }
+  }
+}

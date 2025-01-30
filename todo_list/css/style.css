@@ -99,4 +99,39 @@ button:hover {
   background: #c0392b;
 }
 
+.search-filter {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.search-filter #searchInput {
+  flex: 1;
+}
+
+.task .task-title {
+  cursor: pointer;
+  margin: 0 0 5px;
+  font-size: 18px;
+}
+.task .task-title:hover {
+  color: #04A1BF;
+}
+.task .edit-title {
+  margin-bottom: 10px;
+}
+.task .edit-title input {
+  width: 100%;
+  font-size: 18px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.task .edit-title .edit-buttons {
+  display: flex;
+  gap: 5px;
+}
+.task .edit-title .edit-buttons button {
+  padding: 5px 10px;
+}
+
 /*# sourceMappingURL=style.css.map */

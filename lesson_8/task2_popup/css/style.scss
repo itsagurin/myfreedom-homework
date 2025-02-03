@@ -1,0 +1,106 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.hero{
+  background-color: #04A1BF;
+  background-size: cover;
+  background-position: center;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+}
+
+.popup{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.701);
+  visibility: hidden;
+  opacity: 0;
+  transition: .8s;
+  min-height: 100hv;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+
+  &.active{
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .popup-content{
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 100%;
+
+      h2{
+      font-size: 2rem;
+      margin-bottom: 20px;
+      }
+
+      p{
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      }
+
+      button{
+      height: 45px;
+      width: 200px;
+      padding: 10px 20px;
+      background-color: #e74c3c;
+      border-radius: 7px;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      }
+    }
+}
+
+section{
+  padding: 50px 0;
+}
+
+.container{
+  max-width: 1000px;
+  margin: 0 auto;
+
+  h1{
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  h2{
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  p{
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  button{
+    height: 45px;
+    width: 200px;
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    border-radius: 7px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+}

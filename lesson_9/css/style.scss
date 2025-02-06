@@ -1,0 +1,26 @@
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  transition: background 0.5s ease-in-out;
+}
+
+.gallery {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 50px;
+
+  img {
+    width: 150px;
+    height: 100px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+
+    &.selected {
+      transform: scale(1.1);
+      border: 3px solid #ff9800;
+    }
+  }
+}

@@ -44,7 +44,6 @@ class EventManager {
     }
 
     addEvent() {
-        // Clear previous error messages
         this.clearErrorMessages();
 
         const title = document.getElementById('eventTitle').value.trim();
@@ -52,7 +51,6 @@ class EventManager {
         const description = document.getElementById('eventDescription').value.trim();
         const type = document.getElementById('eventType').value;
 
-        // Validate all fields
         if (!title || !date || !description) {
             this.showError('Пожалуйста, заполните все поля');
             return;
@@ -65,18 +63,15 @@ class EventManager {
     }
 
     showError(message) {
-        // Remove any existing error message
         const existingError = document.querySelector('.error-message');
         if (existingError) {
             existingError.remove();
         }
 
-        // Create and insert error message
         const errorDiv = document.createElement('div');
         errorDiv.classList.add('error-message');
         errorDiv.textContent = message;
 
-        // Insert error message before the event form
         const eventForm = document.querySelector('.event-form');
         eventForm.insertBefore(errorDiv, eventForm.firstChild);
     }
@@ -121,7 +116,6 @@ class EventManager {
     }
 
     saveEditedEvent() {
-        // Clear previous error messages
         this.clearErrorMessages();
 
         const modal = document.getElementById('eventModal');
@@ -132,7 +126,6 @@ class EventManager {
         const date = document.getElementById('modalEventDate').value;
         const description = document.getElementById('modalEventDescription').value.trim();
 
-        // Validate all fields
         if (!title || !date || !description) {
             this.showError('Пожалуйста, заполните все поля');
             return;

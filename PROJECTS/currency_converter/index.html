@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Конвертер Валют</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="converter">
+    <h2>Конвертер Валют</h2>
+    <div class="input-group">
+        <input type="number" id="amount" placeholder="Введите сумму">
+        <select id="from-currency">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="RUB">RUB</option>
+            <option value="GBP">GBP</option>
+            <option value="JPY">JPY</option>
+        </select>
+    </div>
+
+    <div class="input-group">
+        <div class="result-display" id="converted-amount">0.00</div>
+        <select id="to-currency">
+            <option value="RUB">RUB</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="JPY">JPY</option>
+        </select>
+    </div>
+
+    <div id="exchange-rate">Курс: 1 USD = 0.00 RUB</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

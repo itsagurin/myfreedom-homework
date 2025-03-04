@@ -1,0 +1,156 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.event-form input, .event-form textarea, .event-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.event-form button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.event-form button:hover {
+  background-color: #45a049;
+}
+
+.events-container .filters {
+  margin-bottom: 15px;
+}
+.events-container .filters select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.events-container #eventsList .event-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+.events-container #eventsList .event-item .event-details {
+  flex-grow: 1;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.events-container #eventsList .event-item .event-actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: flex-end;
+}
+.events-container #eventsList .event-item .event-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+}
+.events-container #eventsList .event-item .event-actions button:hover {
+  color: #333;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal .modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 5px;
+}
+.modal .modal-content .close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.modal .modal-content .close-btn:hover {
+  color: black;
+}
+.modal .modal-content input, .modal .modal-content textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+.modal .modal-content button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+  .event-form input, .event-form textarea, .event-form select, .event-form button {
+    font-size: 14px;
+  }
+  .events-container .event-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .events-container .event-item .event-details {
+    margin-bottom: 10px;
+  }
+  .events-container .event-item .event-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

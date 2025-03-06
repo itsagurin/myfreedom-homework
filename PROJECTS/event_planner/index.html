@@ -20,6 +20,10 @@
             <option value="reminder">Напоминание</option>
         </select>
 
+        <div id="additionalFields">
+
+        </div>
+
         <button id="addEventBtn">Добавить событие</button>
     </div>
 
@@ -33,7 +37,8 @@
             </select>
         </div>
 
-        <div id="eventsList">
+        <div id="eventsList" class="events-grid">
+
         </div>
     </div>
 </div>
@@ -42,9 +47,19 @@
     <div class="modal-content">
         <span class="close-btn">&times;</span>
         <h2>Редактирование события</h2>
-        <input type="text" id="modalEventTitle">
+        <input type="text" id="modalEventTitle" placeholder="Название события">
         <input type="date" id="modalEventDate">
-        <textarea id="modalEventDescription"></textarea>
+        <textarea id="modalEventDescription" placeholder="Описание события"></textarea>
+        <select id="modalEventType">
+            <option value="meeting">Встреча</option>
+            <option value="deadline">Дедлайн</option>
+            <option value="reminder">Напоминание</option>
+        </select>
+
+        <div id="modalAdditionalFields">
+
+        </div>
+
         <button id="saveEventBtn">Сохранить</button>
     </div>
 </div>

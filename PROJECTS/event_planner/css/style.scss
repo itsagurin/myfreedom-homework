@@ -1,7 +1,48 @@
+$primary-color: #4CAF50;
+$primary-hover: #45a049;
+$background-color: #f4f4f4;
+$card-background: white;
+$border-color: #ddd;
+$shadow-color: rgba(0, 0, 0, 0.1);
+$text-color: #333;
+$secondary-text: #666;
+
+$meeting-color: #3498db;
+$deadline-color: #e74c3c;
+$reminder-color: #f39c12;
+
+$low-priority: #3498db;
+$medium-priority: #f39c12;
+$high-priority: #e74c3c;
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin button-reset {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@mixin form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  background-color: #f4f4f4;
+  background-color: $background-color;
   margin: 0;
   padding: 20px;
 }
@@ -10,36 +51,42 @@ body {
   width: 100%;
   max-width: 800px;
   margin: auto;
-  background: white;
+  background: $card-background;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px $shadow-color;
 }
 
 .event-form {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   gap: 10px;
   margin-bottom: 20px;
 
   input, textarea, select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
+    @include form-input;
   }
 
   button {
-    background-color: #4CAF50;
+    background-color: $primary-color;
     color: white;
     border: none;
     padding: 10px;
     cursor: pointer;
     border-radius: 4px;
+    font-weight: bold;
 
     &:hover {
-      background-color: #45a049;
+      background-color: $primary-hover;
+    }
+  }
+
+  .form-group {
+    @include flex-column;
+    margin-bottom: 10px;
+
+    label {
+      margin-bottom: 5px;
+      font-weight: bold;
     }
   }
 }
@@ -49,44 +96,122 @@ body {
     margin-bottom: 15px;
 
     select {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      @include form-input;
     }
   }
 
-  #eventsList {
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+
     .event-item {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
+      @include flex-column;
       background-color: #f9f9f9;
-      padding: 10px;
-      margin-bottom: 10px;
+      padding: 15px;
       border-radius: 4px;
+      border-left: 4px solid #999;
+      box-shadow: 0 1px 3px $shadow-color;
+      position: relative;
+
+      &.meeting {
+        border-left-color: $meeting-color;
+
+        .event-type-badge {
+          background-color: $meeting-color;
+        }
+      }
+
+      &.deadline {
+        border-left-color: $deadline-color;
+
+        .event-type-badge {
+          background-color: $deadline-color;
+        }
+      }
+
+      &.reminder {
+        border-left-color: $reminder-color;
+
+        .event-type-badge {
+          background-color: $reminder-color;
+        }
+      }
 
       .event-details {
+        @include flex-column;
         flex-grow: 1;
-        width: 100%;
-        margin-bottom: 10px;
+
+        .event-header {
+          @include flex-row;
+          align-items: center;
+          margin-bottom: 10px;
+
+          .event-type-badge {
+            color: white;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            margin-right: 10px;
+          }
+
+          .event-title {
+            margin: 0;
+            font-size: 18px;
+            flex-grow: 1;
+          }
+        }
+
+        .event-time {
+          @include flex-column;
+          margin-bottom: 10px;
+          font-size: 14px;
+          color: $secondary-text;
+
+          .event-date {
+            font-weight: bold;
+          }
+
+          .event-time-range, .event-time-start, .event-deadline, .event-repeat {
+            margin-top: 3px;
+          }
+
+          .high-priority {
+            color: $high-priority;
+            font-weight: bold;
+          }
+
+          .medium-priority {
+            color: $medium-priority;
+          }
+
+          .low-priority {
+            color: $low-priority;
+          }
+        }
+
+        .event-description {
+          margin: 0;
+          font-size: 14px;
+          color: $text-color;
+          line-height: 1.5;
+        }
       }
 
       .event-actions {
-        display: flex;
+        @include flex-row;
         gap: 10px;
-        width: 100%;
         justify-content: flex-end;
+        margin-top: 15px;
 
         button {
-          background: none;
-          border: none;
-          cursor: pointer;
-          color: #666;
+          @include button-reset;
+          color: $secondary-text;
+          font-size: 18px;
+          padding: 5px;
 
           &:hover {
-            color: #333;
+            color: $text-color;
           }
         }
       }
@@ -103,11 +228,11 @@ body {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 
   .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
+    background-color: $card-background;
+    margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 90%;
@@ -126,29 +251,51 @@ body {
       }
     }
 
-    input, textarea {
-      width: 100%;
-      padding: 10px;
+    h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    input, textarea, select {
+      @include form-input;
       margin: 10px 0;
-      box-sizing: border-box;
     }
 
     button {
-      background-color: #4CAF50;
+      background-color: $primary-color;
       color: white;
       border: none;
       padding: 10px;
       cursor: pointer;
       border-radius: 4px;
       width: 100%;
+      font-weight: bold;
+      margin-top: 15px;
+
+      &:hover {
+        background-color: $primary-hover;
+      }
+    }
+
+    .form-group {
+      @include flex-column;
+      margin-bottom: 10px;
+
+      label {
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
     }
   }
 }
 
 .error-message {
-  color: red;
+  color: $deadline-color;
   margin-bottom: 10px;
   text-align: center;
+  padding: 10px;
+  background-color: rgba($deadline-color, 0.1);
+  border-radius: 4px;
 }
 
 @media (max-width: 600px) {
@@ -162,17 +309,14 @@ body {
     }
   }
 
-  .events-container .event-item {
-    flex-direction: column;
-    align-items: flex-start;
-
-    .event-details {
-      margin-bottom: 10px;
+  .events-container {
+    .events-grid {
+      grid-template-columns: 1fr;
     }
+  }
 
-    .event-actions {
-      width: 100%;
-      justify-content: flex-start;
-    }
+  .modal .modal-content {
+    margin: 15% auto;
+    padding: 15px;
   }
 }

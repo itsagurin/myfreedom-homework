@@ -36,9 +36,19 @@ body {
   padding: 10px;
   cursor: pointer;
   border-radius: 4px;
+  font-weight: bold;
 }
 .event-form button:hover {
   background-color: #45a049;
+}
+.event-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.event-form .form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .events-container .filters {
@@ -49,35 +59,109 @@ body {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  box-sizing: border-box;
 }
-.events-container #eventsList .event-item {
+.events-container .events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+}
+.events-container .events-grid .event-item {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   background-color: #f9f9f9;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 15px;
   border-radius: 4px;
+  border-left: 4px solid #999;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
-.events-container #eventsList .event-item .event-details {
+.events-container .events-grid .event-item.meeting {
+  border-left-color: #3498db;
+}
+.events-container .events-grid .event-item.meeting .event-type-badge {
+  background-color: #3498db;
+}
+.events-container .events-grid .event-item.deadline {
+  border-left-color: #e74c3c;
+}
+.events-container .events-grid .event-item.deadline .event-type-badge {
+  background-color: #e74c3c;
+}
+.events-container .events-grid .event-item.reminder {
+  border-left-color: #f39c12;
+}
+.events-container .events-grid .event-item.reminder .event-type-badge {
+  background-color: #f39c12;
+}
+.events-container .events-grid .event-item .event-details {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
-  width: 100%;
+}
+.events-container .events-grid .event-item .event-details .event-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   margin-bottom: 10px;
 }
-.events-container #eventsList .event-item .event-actions {
-  display: flex;
-  gap: 10px;
-  width: 100%;
-  justify-content: flex-end;
+.events-container .events-grid .event-item .event-details .event-header .event-type-badge {
+  color: white;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  margin-right: 10px;
 }
-.events-container #eventsList .event-item .event-actions button {
+.events-container .events-grid .event-item .event-details .event-header .event-title {
+  margin: 0;
+  font-size: 18px;
+  flex-grow: 1;
+}
+.events-container .events-grid .event-item .event-details .event-time {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #666;
+}
+.events-container .events-grid .event-item .event-details .event-time .event-date {
+  font-weight: bold;
+}
+.events-container .events-grid .event-item .event-details .event-time .event-time-range, .events-container .events-grid .event-item .event-details .event-time .event-time-start, .events-container .events-grid .event-item .event-details .event-time .event-deadline, .events-container .events-grid .event-item .event-details .event-time .event-repeat {
+  margin-top: 3px;
+}
+.events-container .events-grid .event-item .event-details .event-time .high-priority {
+  color: #e74c3c;
+  font-weight: bold;
+}
+.events-container .events-grid .event-item .event-details .event-time .medium-priority {
+  color: #f39c12;
+}
+.events-container .events-grid .event-item .event-details .event-time .low-priority {
+  color: #3498db;
+}
+.events-container .events-grid .event-item .event-details .event-description {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+}
+.events-container .events-grid .event-item .event-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+.events-container .events-grid .event-item .event-actions button {
   background: none;
   border: none;
   cursor: pointer;
   color: #666;
+  font-size: 18px;
+  padding: 5px;
 }
-.events-container #eventsList .event-item .event-actions button:hover {
+.events-container .events-grid .event-item .event-actions button:hover {
   color: #333;
 }
 
@@ -93,8 +177,8 @@ body {
   background-color: rgba(0, 0, 0, 0.4);
 }
 .modal .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
+  background-color: white;
+  margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
   width: 90%;
@@ -111,11 +195,17 @@ body {
 .modal .modal-content .close-btn:hover {
   color: black;
 }
-.modal .modal-content input, .modal .modal-content textarea {
+.modal .modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+.modal .modal-content input, .modal .modal-content textarea, .modal .modal-content select {
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   box-sizing: border-box;
+  margin: 10px 0;
 }
 .modal .modal-content button {
   background-color: #4CAF50;
@@ -125,12 +215,29 @@ body {
   cursor: pointer;
   border-radius: 4px;
   width: 100%;
+  font-weight: bold;
+  margin-top: 15px;
+}
+.modal .modal-content button:hover {
+  background-color: #45a049;
+}
+.modal .modal-content .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.modal .modal-content .form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .error-message {
-  color: red;
+  color: #e74c3c;
   margin-bottom: 10px;
   text-align: center;
+  padding: 10px;
+  background-color: rgba(231, 76, 60, 0.1);
+  border-radius: 4px;
 }
 
 @media (max-width: 600px) {
@@ -140,16 +247,12 @@ body {
   .event-form input, .event-form textarea, .event-form select, .event-form button {
     font-size: 14px;
   }
-  .events-container .event-item {
-    flex-direction: column;
-    align-items: flex-start;
+  .events-container .events-grid {
+    grid-template-columns: 1fr;
   }
-  .events-container .event-item .event-details {
-    margin-bottom: 10px;
-  }
-  .events-container .event-item .event-actions {
-    width: 100%;
-    justify-content: flex-start;
+  .modal .modal-content {
+    margin: 15% auto;
+    padding: 15px;
   }
 }
 
